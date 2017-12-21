@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Add Friends{% endblock %}
+{% block content %}
+{% if errors %}
+<p>{{ errors|join:", " }}</p>
+<p><a href="http://www.rightone.com:8080/friendship/friends/">Back to MyFriends List</a></p>
+{% endif %}
+{% if not to_username == request.user.username %}
+
+<form method="post">
+{% csrf_token %}
+<input type="hidden" name="to_username" value="{{ to_username }}" />
+<input type="submit" value="add {{ to_username }} as a friend" />
+</form>
+{% endif %}
+{% endblock %}

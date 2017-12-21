@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}Log-in{% endblock %}
+
+{% block content %}
+
+{% load staticfiles %}
+<!--=================================
+ banner -->
+
+<section class="inner-intro bg bg-fixed bg-overlay-black-60" style="background-image:url({% static 'images/pattern/01.png' %});">
+  <div class="container">
+     <div class="row intro-title text-center">
+           <div class="col-sm-12">
+        <div class="section-title"><h1 class="pos-r divider">Dashboard <span class="sub-title">Dashboard</span></h1></div>
+        </div>
+        </div>
+
+     </div>
+</section>
+
+<!--=================================
+ banner -->
+
+
+<!--=================================
+ Page Section -->
+<section class="masonry-main page-section-ptb pb-50 xs-pb-60">
+ <div class="container">
+  <div class="row">
+   <div class="masonry-block">
+	 <div class="masonry column-2">
+   <div class="grid-sizer"></div>
+    	<div class="masonry-item post-article">
+     <div class="post post-artical">
+              <div class="post-image clearfix"><a href={% url "viewprofile" %}><img class="img-responsive" src="{% static 'images/blog/02.png' %}" alt=""></a></div>
+              <div class="post-details">
+              <div class="post-title mt-20"><h5 class="title text-uppercase mt-20"><a href={% url "viewprofile" %}>Profile</a></h5></div>
+              <div class="post-icon">
+              <div class="post-content"><p>View Profile | Edit Profile</p></div>
+              </div>
+              </div>
+          </div> </div>
+        <div class="masonry-item post-article">
+     <div class="post post-artical">
+              <div class="post-image clearfix"><a href="{% url "password_change" %}"><img class="img-responsive" src="{% static 'images/blog/04.png' %}" alt=""></a></div>
+              <div class="post-details">
+              <div class="post-title mt-20"><h5 class="title text-uppercase mt-20"><a href="{% url "password_change" %}">Security</a></h5></div>
+              <div class="post-icon">
+              <div class="post-content"><p>Change password hear.</p></div>
+              </div>
+              </div>
+          </div> </div>
+        <div class="masonry-item post-article">
+     <div class="post post-artical">
+              <div class="post-image clearfix"><a href="{% url "search:search" %}"><img class="img-responsive" src="{% static 'images/blog/03.png' %}" alt=""></a></div>
+              <div class="post-details">
+              <div class="post-title mt-20"><h5 class="title text-uppercase mt-20"><a href="{% url "search:search" %}">Search Users</a></h5></div>
+              <div class="post-icon">
+              <div class="post-content"><p>Seeking someone you are interested in. o(*≧▽≦)ツ</p></div>
+              </div>
+              </div>
+          </div> </div>
+        <div class="masonry-item post-article">
+     <div class="post post-artical">
+              <div class="post-image clearfix"><a href="{% url "messages_inbox" %}"><img class="img-responsive" src="{% static 'images/blog/01.png' %}" alt=""></a></div>
+              <div class="post-details">
+              <div class="post-title mt-20"><h5 class="title text-uppercase mt-20"><a href="{% url "messages_inbox" %}">Message</a></h5></div>
+              <div class="post-icon">
+              <div class="post-content"><p>Do you get a new message? o(*////▽////*)q</p></div>
+              </div>
+              </div>
+          </div> </div>
+        <div class="masonry-item post-article">
+     <div class="post post-artical">
+              <div class="post-image clearfix"><a href="{% url "friendship:friendship_view_friends" %}"><img class="img-responsive" src="{% static 'images/blog/05.png' %}" alt=""></a></div>
+              <div class="post-details">
+              <div class="post-title mt-20"><h5 class="title text-uppercase mt-20"><a href="{% url "friendship:friendship_view_friends" %}">Friends</a></h5></div>
+              <div class="post-icon">
+              <div class="post-content"><p>Some one may send you a friend request. ✧(≖ ◡ ≖✿)</p></div>
+              </div>
+              </div>
+          </div> </div>
+
+</div>
+</div>
+
+</div>
+</div></section>
+
+<!--=================================
+ page-section -->
+
+{% endblock %}

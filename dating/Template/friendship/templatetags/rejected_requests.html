@@ -1,0 +1,12 @@
+<ul>
+    {% for rejected_request in rejected_requests %}
+        <li>You reject the <a href = "http://www.rightone.com:8080/account/profile/{{ rejected_request.from_user}}">{{ rejected_request.from_user}}</a>.</li>
+
+    {% empty %}
+</ul>
+       <div>No  rejected request.</div>
+       {% endfor %}
+
+  </ul>
+
+</ul>

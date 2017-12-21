@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Friend Request List{% endblock %}
+{% block content %}
+<p><a href="http://www.rightone.com:8080/friendship/friends/">MyFriends</a>
+  |<a href="http://www.rightone.com:8080/friendship/friend/requests/">My Friends Request</a>
+|<a href="http://www.rightone.com:8080/friendship/followers/">MyFollowers</a>
+|<a href="http://www.rightone.com:8080/friendship/following/">MyFollowing</a>
+</p>
+<!-- <h1>From Friend Request List</h1>
+<ul>
+
+{% for friendship_request in friendship_requests_from_others %}
+
+    <li>{{ friendship_request.from_user }} to {{ friendship_request.to_user }} <a href="{% url 'friendship_requests_detail' friendship_request.id %}">view</a></li>
+
+{% empty %}
+</ul>
+<div>No  friend requests from other users.</div>
+{% endfor %}
+
+<h1>To Friend Request List</h1>
+<ul>
+
+{% for out_friendship_request in friendship_requests_by_yourself %}
+
+    <li>{{ out_friendship_request.from_user }} to {{ out_friendship_request.to_user }} </li>
+
+{% empty %}
+</ul>
+<div>No friend requests to other users.</div>
+
+{% endfor %}   -->
+<h1> FriendRequest Rejected List</h1>
+<ul>
+
+{% for Rejectet_friendship_request in requests %}
+
+    <li>{{ Rejectet_friendship_request.from_user }} to {{ Rejectet_friendship_request.to_user }} </li>
+
+{% empty %}
+</ul>
+<div>No friend requests to other users.</div>
+
+ {% endfor %}
+{%endblock%}

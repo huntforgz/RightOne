@@ -1,0 +1,12 @@
+<ul>
+    {% for read_request in read_requests %}
+        <li>You read the {{ read.from_user}}.</li>
+
+    {% empty %}
+</ul>
+       <div>No  read request.</div>
+       {% endfor %}
+
+  </ul>
+
+</ul>

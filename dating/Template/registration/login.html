@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}Log-in{% endblock %}
+
+{% block content %}
+
+{% load staticfiles %}
+<!--=================================
+ inner-intro-->
+
+<section class="inner-intro bg bg-fixed bg-overlay-black-60" style="background-image: url({% static 'images/pattern/01.png' %}) ;">
+  <div class="container">
+     <div class="row intro-title text-center">
+           <div class="col-sm-12">
+        <div class="section-title"><h1 class="pos-r divider">login <span class="sub-title">login</span></h1></div>
+        </div>
+
+           </div>
+
+     </div>
+</section>
+
+<!--=================================
+ inner-intro-->
+
+{% if form.errors %}
+    <p>
+      Your username and password didn't match.
+      Please try again.
+    </p>
+  {% endif %}
+<!--=================================
+ login-->
+
+<section class="login-form login-img dark-bg page-section-ptb100 pb-70" style="background: url({% static 'images/pattern/04.png' %}) no-repeat 0 0; background-size: cover;">
+  <div class="container">
+     <div class="row">
+       <div class="col-md-6 col-md-offset-3">
+       <div class="login-1-form clearfix text-center">
+        <h4 class="title divider-3 text-white">SIGN IN</h4>
+
+            <ul class="list-inline text-capitalize">
+                <li><a class="fb" href="{% url "social:begin" "facebook" %}"><img src="{% static 'images/facebook.svg' %}" width="30" height="30"> &nbsp Facebook</a></li>
+                <li><a class="gplus" href="{% url "social:begin" backend="google-oauth2" %}"><img src="{% static 'images/g.png' %}" width="30" height="30"> &nbsp google+</a></li>
+                <li><a class="github" href="{% url "social:begin" "github" %}"><img src="{% static 'images/github.png' %}" width="30" height="30"> &nbsp GitHub</a></li>
+                <li><a class="twitter" href="{% url "social:begin" "twitter" %}"><img src="{% static 'images/twiiter.png' %}" width="30" height="30"> &nbsp Twitter</a></li>
+
+            </ul>
+
+
+
+            <form action="{% url 'login' %}" method="post">
+
+              {% csrf_token %}
+
+              <div class="section-field mb-20">
+              <div class="field-widget">
+               <i class="glyph-icon flaticon-user"></i>
+               <label for="id_username"></label>
+               <input id="name" class="web" type="text" placeholder="User name" name="username" required maxlength="254" id="id_username" autofocus />
+              </div>
+            </div>
+            <div class="section-field mb-10">
+              <div class="field-widget">
+               <i class="glyph-icon flaticon-padlock"></i>
+               <label for="id_password"></label>
+               <input id="Password" class="Password" type="password" placeholder="Password" name="password" required id="id_password" />
+              </div>
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{{ next }}" />
+            </div>
+            <div class="section-field text-uppercase">
+                 <a href="{% url "password_reset" %}" class="pull-right text-white">Forgot Password?</a>
+            </div>
+            <div class="clearfix"></div>
+            <div class="section-field text-uppercase text-center mt-20">
+            <a class="button  btn-lg btn-theme full-rounded animated right-icn"><span><input style=   "background-color:   transparent;border:   0px; color:#ffffff " type="submit" value="Sign In"><i class="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a>
+            </div><div class="clearfix"></div>
+            <div class="section-field mt-20 text-center text-white">
+            <p class="lead mb-0">Don’t have an account? <a class="text-white" href="{% url "register" %}"><u>Register now!</u> </a></p>
+            </div>
+
+</div>
+       </div>
+          </div>
+        </div>
+
+</section>
+
+<!--=================================
+ login-->
+
+{% endblock %}
+

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Friends{% endblock %}
+{% block content %}
+
+{% load friendshiptags %}
+
+<h1>My Friends</h1>
+<p> {% friend_count request.user %} </p>
+
+{% get_by_name friendship_context_object_name as var %}
+{% friends var %}
+
+
+{% endblock %}

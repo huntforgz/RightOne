@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+{% block title %}Edit your account{% endblock %}
+{% block content %}
+{% load staticfiles %}
+
+<!--=================================
+ banner -->
+<section class="inner-intro bg bg-fixed bg-overlay-black-60" style="background-image:url({% static 'images/pattern/01.png' %});">
+  <div class="container">
+     <div class="row intro-title text-center">
+           <div class="col-sm-12">
+        <div class="section-title"><h1 class="pos-r divider">Edit Profile <span class="sub-title">Edit Profile</span></h1></div>
+        </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!--=================================
+ banner -->
+ <section class="page-section-ptb pt-100 text-left">
+    <div class="container">
+    <form action="" method="post" enctype="multipart/form-data">
+    <div class="row">
+    <div class="col-sm-12 ">
+        <h4 class="title divider-3 mb-50">Basic Details</h4>
+    </div>
+    </div>
+                <div class="section-field mb-30">
+                 <div class="field-widget">
+                  <label for="id_first_name">First Name:</label>
+                  <input type="text" name="first_name" maxlength="30" id="id_first_name" value = {{request.user.first_name}}>
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                  <label for="id_last_name">Last Name:</label>
+                  <input type="text" name="last_name" maxlength="30" id="id_last_name" value = {{request.user.last_name}}>
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                  <label for="id_email">Email Address:</label>
+                  <input type="email" name="email" value={{request.user.email}} maxlength="254" id="id_email" >
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                  <label for="id_nickname">Nickname:</label>
+                  <input type="text" name="nickname" maxlength="50" id="id_nickname" value={{profile.nickname}} >
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                  <label for="id_intro">Intro:</label>
+                  <textarea name="intro" maxlength="500" id="id_intro" cols="40" rows="10">
+</textarea>
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                  <label for="id_photo">Avatar:</label><br>
+                  Currently: <img src="{% static profile.photo %}" height="80" width="80">
+                  <input type="checkbox" name="photo-clear" id="photo-clear_id" />
+                  <label for="photo-clear_id">Clear</label><br />
+                    Change:
+                <input type="file" name="photo" id="id_photo" /></p>
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                  <label for="id_age">Age:</label>
+                  <input type="number" name="age" value="{{profile.age}}" required id="id_age" />
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                  <label for="id_height">Height:</label>
+                  <input type="number" name="height" value="{{profile.height}}" id="id_height" />
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                  <label for="id_weight">Weight:</label>
+                  <input type="number" name="weight" value="{{profile.weight}}" id="id_weight" />
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                  <label for="id_gender">Gender:</label>
+                  <div class="row">
+                    <div class="col-sm-2">
+                        <div >
+                            &nbsp &nbsp
+                            <input name="gender" id="id_gender" checked="checked" type="radio" value="F">
+                            <label for="id_gender">female</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div>
+                            <input name="gender" id="id_gender" type="radio" value="M">
+                            <label for="id_gender">male</label>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="section-field mb-30">
+                  <div class="field-widget">
+                  <label for="id_education">Education:</label>
+                  <select name="education" id="id_education">
+  <option value="">---------</option>
+
+  <option value="0">currently a primary school pupil</option>
+
+  <option value="1">primary school</option>
+
+  <option value="2">secondary school</option>
+
+  <option value="3" selected>college/bachelor degree</option>
+
+  <option value="4">masters degree</option>
+
+  <option value="5">doctorate degree</option>
+
+</select>
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                  <label for="id_only_child">Only child:</label>
+                  <input type="checkbox" name="only_child" id="id_only_child" />
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                  <label for="id_location">Location:</label>
+                  <input type="text" name="location" value={{profile.location}} maxlength="2" id="id_location" />
+                  </div>
+                </div>
+    <div class="row">
+    <div class="col-sm-12 ">
+        <h4 class="title divider-3 mb-50">Music</h4>
+    </div>
+    </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                    <label for="id_enjoymusic">Enjoymusic:</label>
+                    <input type="number" name="enjoymusic" value="{{ufeature.enjoymusic}}" required id="id_enjoymusic" />
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                    <label for="id_musicloved">Music Loved:</label>
+                    <br>
+                    {% for m in music %}
+                        <li style="display:inline; margin: 0px 20px 10px 0px; padding: 5px 0px 5px 0px;  ">  <input type="checkbox" name="musicloved" id="id_musicloved" value="{{m.id}}"
+                            {% if m in lmusic %}
+                            checked
+                         {% endif %} /> {{m.genre}} &nbsp </li>
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                    <label for="id_musicloved">Music Not Like:</label>
+                    <br>
+                    {% for m in music %}
+                        <li style="display:inline; margin: 0px 20px 10px 0px; padding: 5px 0px 5px 0px;  ">  <input type="checkbox" name="musichated" id="id_musichated" value="{{m.id}}"
+                            {% if m in hmusic %}
+                            checked
+                         {% endif %} /> {{m.genre}} &nbsp </li>
+                    {% endfor %}
+                  </div>
+                </div>
+  <div class="row">
+    <div class="col-sm-12 ">
+        <h4 class="title divider-3 mb-50">Movie</h4>
+    </div>
+    </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                    <label for="id_enjoymovie">Enjoymovie:</label>
+                    <input type="number" name="enjoymovie" value="{{ufeature.enjoymovie}}" required id="id_enjoymovie" />
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                    <label for="id_movieloved">Movie Loved:</label>
+                    <br>
+                    {% for m in movie %}
+                        <li style="display:inline; margin: 0px 20px 10px 0px; padding: 5px 0px 5px 0px;  ">  <input type="checkbox" name="movieloved" id="id_movieloved" value="{{m.id}}"
+                            {% if m in lmovie %}
+                            checked
+                         {% endif %} /> {{m.genre}} &nbsp </li>
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                    <label for="id_moviehated">Movie Not Like:</label>
+                    <br>
+                    {% for m in movie %}
+                        <li style="display:inline; margin: 0px 20px 10px 0px; padding: 5px 0px 5px 0px;  ">  <input type="checkbox" name="moviehated" id="id_moviehated" value="{{m.id}}"
+                            {% if m in hmovie %}
+                            checked
+                         {% endif %} /> {{m.genre}} &nbsp </li>
+                    {% endfor %}
+                  </div>
+                </div>
+
+    <div class="row">
+    <div class="col-sm-12 ">
+        <h4 class="title divider-3 mb-50">Hobby</h4>
+    </div>
+    </div>
+                    <div class="section-field mb-30">
+                  <div class="field-widget">
+                    <label for="id_hobbies"></label>
+                    {% for m in hobbies %}
+                        <li style="display:inline; margin: 0px 20px 10px 0px; padding: 5px 0px 5px 0px;  ">  <input type="checkbox" name="hobbies" id="id_hobbies" value="{{m.id}}"
+                            {% if m in lhobbies %}
+                            checked
+                         {% endif %} /> {{m.hobby_name}} &nbsp </li>
+                    {% endfor %}
+                  </div>
+                </div>
+                 {% csrf_token %}
+            <div class="section-field text-uppercase text-center mt-20">
+            <a class="button  btn-lg btn-theme full-rounded animated right-icn"><span><input style=   "background-color:   transparent;border:   0px; color:#ffffff " type="submit" value="Save Change" name="_save"><i class="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a>
+            </div>
+
+        </form>
+            <div class="section-field text-uppercase text-center mt-20">
+            <a class="button  btn-lg btn-theme full-rounded animated right-icn" href="{% url "dashboard" %}"><span>Back To Home<i class="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a>
+            </div>
+</section>
+
+{% endblock %}

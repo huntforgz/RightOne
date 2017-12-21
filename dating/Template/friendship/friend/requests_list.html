@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Friend Request List{% endblock %}
+{% load friendshiptags %}
+{% block content %}
+
+<div class="container">
+	<br>
+	<br>
+<div class="row">
+    <div class="col-sm-12 ">
+        <h3 class="title divider-3 mb-40">Friend Request List</h3>
+    </div>
+</div>
+
+<div class="section-field mb-30">
+        <h4>&nbsp UnreadRequest List</h4>
+
+<ul>
+  <p> {% unread_request_count request.user %} </p>
+{% for friendship_request in friendship_requests_from_others %}
+
+    <li>Friend request from <a href = "{% url 'view_profile_with_name' friendship_request.from_user.username %}" >
+      {{ friendship_request.from_user.username }}</a>
+      |  <a href="{% url 'friendship:friendship_requests_detail' friendship_request.id %}">Deal with.</a></li>
+
+{% empty %}
+</ul>
+<p>No  unread requests from other users.</p>
+{% endfor %}
+</div>
+
+<div class="section-field mb-30">
+        <h4>&nbsp RejectedRequest List</h4>
+
+{% rejected_requests request.user%}
+</div>
+
+<div class="section-field mb-30">
+        <h4>&nbsp SentRequest List</h4>
+
+
+{% sent_requests request.user%}
+</div>
+
+<!-- <h1> Friend Request Sent List</h1>
+<ul>
+
+{% for out_friendship_request in friendship_requests_sent %}
+
+    <li>You send  {{ out_friendship_request.to_user }} a friend reuest. </li>
+
+{% empty %}
+</ul>
+<div>No friend requests to other users.</div>
+
+{% endfor %} -->
+<!-- <h1> FriendRequest Rejected List</h1>
+<ul>
+
+{% for Rejectet_friendship_request in requests %}
+
+    <li>{{ Rejectet_friendship_request.from_user }} to {{ Rejectet_friendship_request.to_user }} </li>
+
+{% empty %}
+</ul>
+<div>No friend requests to other users.</div>
+
+ {% endfor %} -->
+{%endblock%}

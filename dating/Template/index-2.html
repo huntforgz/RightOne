@@ -1,0 +1,809 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="HTML5 Template" />
+<meta name="description" content="Cupid Love - Dating HTML5 Template" />
+<meta name="author" content="potenzaglobalsolutions.com" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>RightOne</title>
+
+<!-- Favicon -->
+<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+
+<!-- bootstrap -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/bootstrap-select.min.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- mega menu -->
+<link href="{% static 'css/mega-menu/mega_menu.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- font awesome -->
+<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- Flaticon -->
+<link href="{% static 'css/flaticon.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- Magnific popup -->
+<link href="{% static 'css/magnific-popup/magnific-popup.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- owl-carousel -->
+<link href="{% static 'css/owl-carousel/owl.carousel.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- General style -->
+<link href="{% static 'css/general.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- main style -->
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- Animate -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/animate.min.css' %}">
+
+</head>
+
+<body>
+
+<!--=================================
+ preloader -->
+<div id="preloader">
+  <div class="clear-loading loading-effect"><img src="{% static 'images/loading.gif' %}" alt=""></div>
+</div>
+
+<!--=================================
+header -->
+
+<header id="header" class="defualt">
+<div class="topbar">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="topbar-left text-left">
+           <ul class="list-inline">
+             <li><a href="mailto:support@website.com"><i class="fa fa-envelope-o"> </i> support@website.com </a></li>
+             <li><a href="tel:(007)1234567890"><i class="fa fa-phone"></i> (007) 123 456 7890 </a></li>
+           </ul>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="topbar-right text-right">
+           <ul class="list-inline social-icons color-hover">
+             <li class="social-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+             <li class="social-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+             <li class="social-instagram"><a href="#"><i class="fa fa-instagram"></i></a></li>
+             <li class="social-dribbble"><a href="#"><i class="fa fa-dribbble"></i></a></li>
+           </ul>
+           <ul class="list-inline text-uppercase top-menu">
+            {% if request.user.is_authenticated %}
+              <li>Hello <a href="{% url "dashboard" %}"> {{ request.user.username }}</a></li>
+              <li><a href="{% url "logout" %}">Logout</a></li>
+            {% else %}
+              <li><a href="{% url "login" %}">Log-in</a></li>
+              <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+           </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--=================================
+ mega menu -->
+
+<div class="menu">
+  <!-- menu start -->
+   <nav id="menu" class="mega-menu">
+    <!-- menu list items container -->
+    <section class="menu-list-items">
+     <div class="container">
+      <div class="row">
+       <div class="col-lg-12 col-md-12">
+        <!-- menu logo -->
+        <ul class="menu-logo">
+            <li>
+                <a href="index-default.html"><img src="{% static 'images/logo.png' %}" alt="logo"> </a>
+            </li>
+        </ul>
+        <!-- menu links -->
+        <ul class="menu-links">
+            <!-- active class -->
+
+            <li><a href="javascript:void(0)">People <i class="fa fa-angle-down fa-indicator"></i></a>
+                 <!-- drop down multilevel  -->
+                <ul class="drop-down-multilevel left-menu">
+                    <li><a href="profile.html">Awsome Boys</a></li>
+                    <li><a href="profile-2.html">Awsome Girls</a></li>
+                 </ul>
+            </li>
+
+            <li><a href="javascript:void(0)">Profile <i class="fa fa-angle-down fa-indicator"></i></a>
+                 <!-- drop down multilevel  -->
+                <ul class="drop-down-multilevel left-menu">
+                    <li><a href="{% url "viewprofile" %}">My Profile</a></li>
+                    <li><a href="{% url "edit" %}">Edit Profile</a></li>
+                 </ul>
+            </li>
+
+            <li><a href="javascript:void(0)">Search <i class="fa fa-angle-down fa-indicator"></i></a>
+                 <!-- drop down multilevel  -->
+               <ul class="drop-down-multilevel left-menu">
+                    <li><a href="{% url "search:search" %}">Search User</a></li>
+                 </ul>
+            </li>
+
+            <li><a href="javascript:void(0)">Message <i class="fa fa-angle-down fa-indicator"></i></a>
+                 <!-- drop down multilevel  -->
+                <ul class="drop-down-multilevel left-menu">
+                    <li><a href="{% url "messages_inbox" %}">Inbox</a></li>
+                    <li><a href="{% url "messages_compose" %}">Write a Message</a></li>
+                 </ul>
+            </li>
+
+            <li><a href="javascript:void(0)">Friends <i class="fa fa-angle-down fa-indicator"></i></a>
+                 <!-- drop down multilevel  -->
+                <ul class="drop-down-multilevel left-menu">
+                    <li><a href="{% url "friendship:friendship_view_friends" %}">My Friends</a></li>
+                    <li><a href="{% url "friendship:friendship_request_list" %}">Friend Request</a></li>
+                    <li><a href="{% url "friendship:friendship_followers" %}">My Followers</a></li>
+                    <li><a href="{% url "friendship:friendship_following" %}">My Followings</a></li>
+                 </ul>
+            </li>
+
+           <li><a href="javascript:void(0)">Stories <i class="fa fa-angle-down fa-indicator"></i></a>
+                 <!-- drop down multilevel  -->
+                <ul class="drop-down-multilevel left-menu">
+                    <li><a href=#>Story A</a></li>
+                    <li><a href=#>Story B</a></li>
+                    <li><a href=#>Story C</a></li>
+                    <li><a href=#>Story D</a></li>
+                 </ul>
+            </li>
+            <li><a href="javascript:void(0)"> Contact <i class="fa fa-angle-down fa-indicator"></i></a>
+                 <!-- drop down multilevel  -->
+                <ul class="drop-down-multilevel right-menu">
+                    <li><a href="contact-1.html">Contact 1</a></li>
+                    <li><a href="contact-2.html">Contact 2</a></li>
+                    <li><a href="contact-3.html">Contact 3</a></li>
+                </ul>
+            </li>
+        </ul>
+
+       </div>
+      </div>
+     </div>
+    </section>
+   </nav>
+  <!-- menu end -->
+ </div>
+</header>
+
+<!--=================================
+ header -->
+
+<!--=================================
+ banner -->
+<section id="home-slider" class="fullscreen">
+<div class="banner bg-1"  data-gradient-red="4">
+<div class="ver-center text-center">
+  <div class="container">
+  <div class="row">
+    <div class="col-sm-12 text-white">
+    <h1 class="animated3 text-white mb-20">tired <span>of</span> being <span> alone</span></h1>
+    <h2 class="textrotate"><span class="rotate"> Create Profile, Find Match, Start Dating</span></h2>
+    </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  </section>
+
+<!--=================================
+ banner -->
+
+
+<!--=================================
+ form-1 -->
+
+   <section class="form-1 ptb-20">
+    <div class="container">
+      <div class="row">
+      <div class="banner-form">
+      <form id="quickfind" method="GET" action="/search/result/">
+        <div class="col-sm-3">
+          <div class="form-group">
+                <label class="col-md-5 col-sm-12 control-label text-white">Seeking a</label>
+                <div class="col-md-7 col-sm-12">
+                <select class="selectpicker" name="gender" size=1>
+                    <option value="both"> Both </option>
+                    <option value="M"> Man </option>
+                    <option value="F"> Woman </option>
+                </select>
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+                <label class="col-md-3 col-sm-12 control-label text-white">In</label>
+                <div class="col-md-9 col-sm-12">
+                <select class="selectpicker" name="location" >
+                    <option value= 0> ALL </option>
+                    <option value= AL > Alabama </option>
+                    <option value= AK > Alaska  </option>
+                    <option value= AZ > Arizona </option>
+                    <option value= AR > Arkansas </option>
+                    <option value= CA > California </option>
+                    <option value= CO > Colorado </option>
+                                <option value= CT > Connecticut  </option>
+                                <option value= DE > Delaware </option>
+                                <option value= DC > District of Columbia  </option>
+                                <option value= FL > Florida </option>
+                                <option value= GA > Georgia </option>
+                                <option value= HI > Hawaii  </option>
+                                <option value= ID > Idaho  </option>
+                                <option value= IL > Illinois </option>
+                                <option value= IN > Indiana </option>
+                                <option value= IA > Iowa  </option>
+                                <option value= KS > Kansas  </option>
+                                <option value= LA > Louisiana </option>
+                                <option value= ME > Maine </option>
+                                <option value= MD > Maryland </option>
+                                <option value= MA > Massachusetts </option>
+                                <option value= MI > Michigan </option>
+                                <option value= MN > Minnesota </option>
+                                <option value= MS > Mississippi </option>
+                                <option value= MO > Missouri </option>
+                                <option value= MT > Montana </option>
+                                <option value= NE > Nebraska </option>
+                                <option value= NV > Nevada </option>
+                                <option value= NH > New Hampshire </option>
+                                <option value= NJ > New Jeresy </option>
+                                <option value= NM > New Mexico </option>
+                                <option value= NY > New York </option>
+                                <option value= NC > North Carolina </option>
+                                <option value= ND > North Dakota </option>
+                                <option value= OH > Ohio  </option>
+                                <option value= OK > Oklahoma </option>
+                                <option value= OR > Oregon </option>
+                                <option value= PA > Pennsylvania </option>
+                                <option value= RI > Rhode Island </option>
+                                <option value= SC > SouthCarolina </option>
+                                <option value= SD > South Dakota </option>
+                                <option value= TN > Tennessee </option>
+                                <option value= TX > Texas </option>
+                                <option value= UT > Utah </option>
+                                <option value= VT > Vermont </option>
+                                <option value= VA > Virginia </option>
+                                <option value= WA > Washington </option>
+                                <option value= WV > West Virginia </option>
+                                <option value= WI > Wisconsin </option>
+                                <option value= WY > Wyoming </option>
+                </select>
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="row">
+           <div class="col-sm-7 col-xs-6">
+              <div class="form-group">
+               <label class="col-md-2 col-sm-12 control-label text-white">From</label>
+                <div class="col-md-10 col-sm-12">
+                <select class="selectpicker" name="age_from">
+                    <option value=  16  > 16  </option>
+                    <option value=  17  > 17  </option>
+                    <option value=  18  > 18  </option>
+                    <option value=  19  > 19  </option>
+                    <option value=  20  > 20  </option>
+                    <option value=  21  > 21  </option>
+                    <option value=  22  > 22  </option>
+                    <option value=  23  > 23  </option>
+                    <option value=  24  > 24  </option>
+                    <option value=  25  > 25  </option>
+                    <option value=  26  > 26  </option>
+                    <option value=  27  > 27  </option>
+                    <option value=  28  > 28  </option>
+                    <option value=  29  > 29  </option>
+                    <option value=  30  > 30  </option>
+                    <option value=  31  > 31  </option>
+                    <option value=  32  > 32  </option>
+                    <option value=  33  > 33  </option>
+                    <option value=  34  > 34  </option>
+
+                  </select>
+             </div>
+          </div>
+        </div>
+        <div class="col-sm-5 col-xs-6">
+          <div class="form-group">
+            <label class="col-md-2 col-sm-12 control-label text-white pl-0">To</label>
+             <div class="col-md-10 col-sm-12">
+                 <select class="selectpicker" name="age_to">
+                    <option value=  26  > 26  </option>
+                    <option value=  27  > 27  </option>
+                    <option value=  28  > 28  </option>
+                    <option value=  29  > 29  </option>
+                    <option value=  30  > 30  </option>
+                    <option value=  31  > 31  </option>
+                    <option value=  32  > 32  </option>
+                    <option value=  33  > 33  </option>
+                    <option value=  34  > 34  </option>
+                    <option value=  35  > 35  </option>
+                    <option value=  36  > 36  </option>
+                    <option value=  37  > 37  </option>
+                    <option value=  38  > 38  </option>
+                    <option value=  39  > 39  </option>
+                    <option value=  40  > 40  </option>
+                    <option value=  41  > 41  </option>
+                    <option value=  42  > 42  </option>
+                    <option value=  43  > 43  </option>
+                    <option value=  44  > 44  </option>
+                  </select>
+               </div>
+             </div>
+           </div>
+          </div>
+        </div>
+       <div class="col-sm-2">
+        <a class="button btn-lg btn-theme full-rounded animated right-icn">
+          <span>
+            <input style=   "background-color:   transparent;border:   0px; color:#ffffff " type="submit" value="Search">
+          <i class="glyph-icon flaticon-hearts" aria-hidden="true">
+          </i>
+          </span>
+        </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</section>
+<!--=================================
+ form-1 -->
+
+<!--=================================
+ timeline-section -->
+ <section class="page-section-ptb profile-slider pb-30 xs-pb-60">
+    <div class="container">
+      <div class="row mb-50 xs-mb-30">
+        <div class="col-md-offset-1 col-md-10 text-center">
+          <h2 class="title divider mb-30">Step to find your Soul Mate</h2>
+          <p class="lead">We want to use this website and the database to help people find the right one they want to be with. You could find someone love what you love. You could even find someone hate what you hate. ୧(๑•̀⌄•́๑)૭✧ </p>
+        </div>
+      </div>
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10 col-md-12">
+          <ul class="timeline list-inline">
+            <li>
+              <div class="timeline-badge"><img class="img-responsive" src="{% static 'images/timeline/01.png' %}" alt=""></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading text-center">
+                  <h4 class="timeline-title divider-3">CREATE PROFILE</h4>
+                </div>
+                <div class="timeline-body">
+                  <p>Write what you like, what you don't like. Don't forget to your age, weight, height, etc.</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-badge"><img class="img-responsive" src="{% static 'images/timeline/02.png' %}" alt=""></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading text-center">
+                  <h4 class="timeline-title divider-3">Find match</h4>
+                </div>
+                <div class="timeline-body">
+                  <p>Find someone eaxactly meets your requirement.</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="timeline-badge"><img class="img-responsive" src="{% static 'images/timeline/03.png' %}" alt=""></div>
+              <div class="timeline-panel">
+                <div class="timeline-heading text-center">
+                  <h4 class="timeline-title divider-3">START DATING</h4>
+                </div>
+                <div class="timeline-body">
+                  <p>Why not sent a message?</p>
+                </div>
+              </div>
+            </li>
+        </ul>
+        </div>
+     </div>
+    </div>
+</section>
+
+<!--=================================
+ timeline-section -->
+
+<!--=================================
+ our-app  -->
+
+<section class="page-section-ptb pb-0 text-center our-app pos-r overflow-h" style="background: url({% static 'images/pattern/01.png' %}) no-repeat 0 0; background-size: cover;">
+  <div class="timeline-inner" style="background: url({% static 'images/love.png' %});">
+    <div class="container-fluid">
+      <div class="row mb-200">
+        <div class="col-md-offset-1 col-md-10">
+        <h2 class="title divider">Download Our App</h2>
+        </div>
+      </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+          <h2 class="title mb-30">Want ot find your match..!! <br>Get our app now.</h2>
+          <a class="button btn-dark btn-lg  full-rounded"><i class="fa fa-apple" aria-hidden="true"></i><span><span>available on the</span> app store</span></a>
+          <a class="button btn-lg full-rounded white-bg text-black"><i class="glyph-icon flaticon-play-button"></i><span><span>get it on</span> google play</span></a>
+       </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--=================================
+ our-app  -->
+
+
+<!--=================================
+counter  -->
+
+<section class="page-section-ptb text-white" style="background: url({% static 'images/pattern/02.png' %}) no-repeat 0 0; background-size: cover;">
+  <div class="container">
+      <div class="row mb-50 xs-mb-30">
+        <div class="col-md-offset-1 col-md-10 text-center">
+           <h2 class="title divider">Animated Fun Facts</h2>
+      </div>
+    </div>
+  <div class="row">
+      <div class="col-lg-3 col-sm-3 col-xs-6 col-xx-12 text-center">
+      <div class="counter">
+        <img src="{% static 'images/C.jpg' %}" style="border-radius:50%;" alt="">
+        <span class="timer" data-to="1017" data-speed="10000">1600</span><label>Total Members</label>
+      </div>
+    </div>
+     <div class="col-lg-3 col-sm-3 col-xs-6 col-xx-12 text-center">
+      <div class="counter">
+        <img src="{% static 'images/B.jpeg' %}" style="border-radius:50%;" alt="">
+        <span class="timer" data-to="1010" data-speed="10000">750</span><label>Online Members</label>
+      </div>
+    </div>
+     <div class="col-lg-3 col-sm-3 col-xs-6 col-xx-12 text-center">
+      <div class="counter">
+        <img src="{% static 'images/A.jpg' %}" style="border-radius:50%;" alt="">
+        <span class="timer" data-to="380" data-speed="10000">416</span><label>Men Online</label>
+      </div>
+    </div>
+     <div class="col-lg-3 col-sm-3 col-xs-6 col-xx-12 text-center">
+      <div class="counter">
+        <img src="{% static 'images/D.jpg' %}" style="border-radius:50%; alt="">
+        <span class="timer" data-to="370" data-speed="10000">594</span><label>Women Online</label>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!--=================================
+counter  -->
+
+
+<!--=================================
+profile-slider -->
+
+<section class="page-section-ptb profile-slider pb-30 xs-pb-60">
+    <div class="container">
+      <div class="row mb-20 xs-mb-0">
+        <div class="col-md-offset-1 col-md-10 text-center">
+         <h2 class="title divider">Last Added Profiles</h2>
+        </div>
+      </div>
+    <div class="row">
+    <div class="col-sm-12">
+        <div class="owl-carousel" data-nav-arrow="true" data-items="4" data-md-items="4" data-sm-items="3" data-xs-items="2" data-xx-items="1" data-space="30">
+          {% for u in profile %}
+           <div class="item">
+             <a href="{% url 'view_profile_with_name' u.user.username %}" class="profile-item">
+                    <div class="profile-image clearfix"><img class=“img-responsive” src="{% static u.photo %}" width="263" height="263" alt=""></div>
+                    <div class="profile-details text-center">
+                      <h5 class="title">{{u.user.username}}</h5>
+                      <span>{{u.age}} Years Old</span>
+                    </div>
+                  </a>
+              </div>
+            {% empty %}
+            pass
+            {% endfor %}
+
+         </div>
+       </div>
+      </div>
+    </div>
+</section>
+
+<!--=================================
+profile-slider -->
+
+
+<!--=================================
+story-slider-->
+
+<section class="page-section-ptb grey-bg story-slider">
+  <div class="container">
+    <div class="row mb-20 xs-mb-0">
+      <div class="col-md-offset-1 col-md-10 text-center">
+       <h2 class="title divider">They Found True Love</h2>
+      </div>
+  </div>
+</div>
+<div class="owl-carousel" data-nav-dots="true" data-items="5" data-md-items="4" data-sm-items="3" data-xs-items="2" data-xx-items="1" data-space="30">
+     <div class="item">
+       <div class="story-item">
+            <div class="story-image clearfix"><img class="img-responsive" src="{% static 'images/dating.jpg' %}" alt="">
+             <div class="story-link"><a href="stories-details.html"><i class="glyph-icon flaticon-add"></i></a></div>
+               </div>
+              <div class="story-details text-center">
+                <h5 class="title divider-3">Quinnel & Jonet</h5>
+                <div class="about-des mt-30">Cras ultricies ligula sed magna dictum porta. Quisque velit nisi, pretium ut lacinia in</div>
+            </div>
+          </div>
+        </div>
+     <div class="item">
+       <div class="story-item">
+          <div class="story-image clearfix"><img class="img-responsive" src="{% static 'images/dating.jpg' %}" alt="">
+            <div class="story-link"><a href="stories-details.html"><i class="glyph-icon flaticon-add"></i></a></div></div>
+             <div class="story-details text-center">
+              <h5 class="title divider-3">Adam & Eve</h5>
+              <div class="about-des mt-30">Cras ultricies ligula sed magna dictum porta. Quisque velit nisi, pretium ut lacinia in</div>
+          </div>
+        </div>
+      </div>
+     <div class="item">
+       <div class="story-item">
+            <div class="story-image clearfix"><img class="img-responsive" src="{% static 'images/dating.jpg' %}" alt="">
+            <div class="story-link"><a href="stories-details.html"><i class="glyph-icon flaticon-add"></i></a></div></div>
+            <div class="story-details text-center">
+              <h5 class="title divider-3">Bella & Edward</h5>
+              <div class="about-des mt-30">Cras ultricies ligula sed magna dictum porta. Quisque velit nisi, pretium ut lacinia in</div>
+            </div>
+         </div>
+      </div>
+    <div class="item">
+      <div class="story-item">
+          <div class="story-image clearfix"><img class="img-responsive" src="{% static 'images/dating.jpg' %}" alt="">
+           <div class="story-link"><a href="stories-details.html"><i class="glyph-icon flaticon-add"></i></a></div></div>
+            <div class="story-details text-center">
+              <h5 class="title divider-3">DEMI & HEAVEN</h5>
+              <div class="about-des mt-30">Cras ultricies ligula sed magna dictum porta. Quisque velit nisi, pretium ut lacinia in</div>
+          </div>
+         </div>
+        </div>
+      <div class="item">
+        <div class="story-item">
+           <div class="story-image clearfix"><img class="img-responsive" src="{% static 'images/dating.jpg' %}" alt="">
+           <div class="story-link"><a href="stories-details.html"><i class="glyph-icon flaticon-add"></i></a></div></div>
+            <div class="story-details text-center">
+              <h5 class="title divider-3">David & Bathsheba</h5>
+              <div class="about-des mt-30">Cras ultricies ligula sed magna dictum porta. Quisque velit nisi, pretium ut lacinia in</div>
+            </div>
+          </div>
+       </div>
+     <div class="item">
+      <div class="story-item">
+          <div class="story-image clearfix"><img class="img-responsive" src="{% static 'images/dating.jpg' %}" alt="">
+           <div class="story-link"><a href="stories-details.html"><i class="glyph-icon flaticon-add"></i></a></div></div>
+            <div class="story-details text-center">
+               <h5 class="title divider-3">Eros & Psychi</h5>
+              <div class="about-des mt-30">Cras ultricies ligula sed magna dictum porta. Quisque velit nisi, pretium ut lacinia in</div>
+            </div>
+         </div>
+        </div>
+      <div class="item">
+       <div class="story-item">
+          <div class="story-image clearfix"><img class="img-responsive" src="{% static 'images/dating.jpg' %}" alt="">
+           <div class="story-link"><a href="stories-details.html"><i class="glyph-icon flaticon-add"></i></a></div></div>
+            <div class="story-details text-center">
+              <h5 class="title divider-3">Hector & Andromache</h5>
+              <div class="about-des mt-30">Cras ultricies ligula sed magna dictum porta. Quisque velit nisi, pretium ut lacinia in</div>
+            </div>
+          </div>
+       </div>
+     <div class="item">
+      <div class="story-item">
+         <div class="story-image clearfix"><img class="img-responsive" src="{% static 'images/dating.jpg' %}" alt="">
+           <div class="story-link"><a href="stories-details.html"><i class="glyph-icon flaticon-add"></i></a></div></div>
+            <div class="story-details text-center">
+              <h5 class="title divider-3">Bonnie & Clyde</h5>
+              <div class="about-des mt-30">Cras ultricies ligula sed magna dictum porta. Quisque velit nisi, pretium ut lacinia in</div>
+            </div>
+          </div>
+       </div>
+     <div class="item">
+      <div class="story-item">
+          <div class="story-image clearfix"><img class="img-responsive" src="{% static 'images/dating.jpg' %}" alt="">
+           <div class="story-link"><a href="stories-details.html"><i class="glyph-icon flaticon-add"></i></a></div></div>
+            <div class="story-details text-center">
+              <h5 class="title divider-3">Henry & Clare</h5>
+              <div class="about-des mt-30">Cras ultricies ligula sed magna dictum porta. Quisque velit nisi, pretium ut lacinia in</div>
+            </div>
+        </div>
+       </div>
+      <div class="item">
+      <div class="story-item">
+         <div class="story-image clearfix"><img class="img-responsive" src="{% static 'images/dating.jpg' %}" alt="">
+           <div class="story-link"><a href="stories-details.html"><i class="glyph-icon flaticon-add"></i></a></div></div>
+            <div class="story-details text-center">
+              <h5 class="title divider-3">Casanova & Francesca</h5>
+              <div class="about-des mt-30">Cras ultricies ligula sed magna dictum porta. Quisque velit nisi, pretium ut lacinia in</div>
+            </div>
+          </div>
+       </div>
+     <div class="item">
+       <div class="story-item">
+            <div class="story-image clearfix"><img class="img-responsive" src="{% static 'images/dating.jpg' %}" alt="">
+            <div class="story-link"><a href="stories-details.html"><i class="glyph-icon flaticon-add"></i></a></div></div>
+            <div class="story-details text-center">
+              <h5 class="title divider-3">Jack & Sally</h5>
+              <div class="about-des mt-30">Cras ultricies ligula sed magna dictum porta. Quisque velit nisi, pretium ut lacinia in</div>
+            </div>
+          </div>
+        </div>
+     <div class="item">
+      <div class="story-item">
+            <div class="story-image clearfix"><img class="img-responsive" src="{% static 'images/dating.jpg' %}" alt="">
+            <div class="story-link"><a href="stories-details.html"><i class="glyph-icon flaticon-add"></i></a></div></div>
+            <div class="story-details text-center">
+              <h5 class="title divider-3">James & Lilly</h5>
+              <div class="about-des mt-30">Cras ultricies ligula sed magna dictum porta. Quisque velit nisi, pretium ut lacinia in</div>
+            </div>
+           </div>
+       </div>
+   </div>
+</section>
+
+<!--=================================
+story-slider-->
+
+
+<!--=================================
+footer -->
+
+<footer class="page-section-pt text-white text-center" style="background: url({% static 'images/pattern/04.png' %}) no-repeat 0 0; background-size: cover;">
+<div class="container">
+<div class="row">
+<div class="col-md-offset-1 col-md-10">
+<div class="row mb-50">
+<div class="col-sm-12">
+<h2 class="title divider mb-30">Contact Us</h2>
+<p class="lead">Eum cu tantas legere complectitur, hinc utamur ea eam. Eum patrioque mnesarchum eu, diam erant convenire et vis. Et essent evertitur sea, vis cu ubique referrentur, sed eu dicant expetendis. Eum cu</p>
+</div>
+</div>
+<div class="row mb-50">
+<div class="col-sm-4">
+<div class="address-block">
+<i class="fa fa-desktop" aria-hidden="true"></i>
+<a href="mailto:somemail@mail.com">somemail@mail.com</a>
+</div>
+</div>
+<div class="col-sm-4">
+<div class="address-block">
+<i class="fa fa-home" aria-hidden="true"></i>
+<address>
+T317 Timber Oak Drive<br>
+Sundown, TX 79372
+</address>
+</div>
+</div>
+<div class="col-sm-4">
+<div class="address-block">
+<i class="fa fa-phone" aria-hidden="true"></i>
+<a href="tel:+000123456789">+000 - 123 - 456 - 789</a>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-12 mb-30">
+<h4 class="title divider-3">We Love Talking</h4>
+</div>
+<div class="col-sm-12">
+<div id="formmessage" style="display:none">Success/Error Message Goes Here</div>
+<form id="contactform" class="main-form" role="form" method="post" action="php/contact-form.php">
+<div class="form-group half-group">
+<div class="input-group">
+<input id="name" placeholder="Your name here" class="form-control" name="name" type="text">
+</div>
+</div>
+
+<div class="form-group half-group">
+<div class="input-group">
+<input placeholder="Your mail here" class="form-control" name="email" type="email">
+</div>
+</div>
+
+<div class="form-group">
+<div class="input-group">
+<textarea class="form-control input-message" placeholder="Your message here*" rows="7" name="message"></textarea>
+</div>
+</div>
+<div class="form-group">
+<input type="hidden" name="action" value="sendEmail"/>
+<button id="submit" name="submit" type="submit" value="Send" class="button btn-lg btn-theme full-rounded animated right-icn"><span>Submit Now<i class="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></button>
+</div>
+</form>
+<div id="ajaxloader" style="display:none"><img class="center-block" src="images/loading.gif" alt=""></div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer-widget mt-50">
+      <div class="container">
+      <div class="row">
+         <div class="col-md-offset-2 col-md-8">
+         <div class="footer-logo mb-20">
+           <img class="img-center" src="images/footer-logo.png" alt="">
+           </div>
+
+           <div class="social-icons color-hover mb-10">
+           <ul>
+        <li class="social-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+        <li class="social-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+        <li class="social-dribbble"><a href="#"><i class="fa fa-dribbble"></i></a></li>
+        <li class="social-gplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+        <li class="social-youtube"><a href="#"><i class="fa fa-youtube"></i></a></li>
+        </ul>
+        </div>
+
+           <p class="text-white">© 2017  - Cupid Love All Right Reserved </p>
+         </div>
+       </div>
+      </div></div>
+
+</footer>
+
+
+
+ <!--=================================
+footer -->
+
+
+
+<!--=================================
+Back to Top -->
+<div id="back-to-top"><a class="top arrow" href="#top"><i class="fa fa-level-up"></i></a></div>
+
+<!--=================================
+ jquery -->
+
+
+<!-- jquery  -->
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+
+<!-- bootstrap -->
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap-select.min.js' %}"></script>
+
+<!-- appear -->
+<script type="text/javascript" src="{% static 'js/jquery.appear.js' %}"></script>
+
+<!-- Menu -->
+<script type="text/javascript" src="{% static 'js/mega-menu/mega_menu.js' %}"></script>
+
+<!-- owl-carousel -->
+<script type="text/javascript" src="{% static 'js/owl-carousel/owl.carousel.min.js' %}"></script>
+
+<!-- counter -->
+<script type="text/javascript" src="{% static 'js/counter/jquery.countTo.js' %}"></script>
+
+<!-- Magnific Popup -->
+<script type="text/javascript" src="{% static 'js/magnific-popup/jquery.magnific-popup.min.js' %}"</script>
+
+<!-- Text Rotator -->
+<script type="text/javascript" src="{% static 'js/jquery.simple-text-rotator.js' %}"> </script>
+
+<!-- custom -->
+<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+
+
+</body>
+</html>

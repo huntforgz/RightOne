@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+
+{% block title %}Log-in{% endblock %}
+
+{% block content %}
+
+{% load staticfiles %}
+
+
+<!--=================================
+ banner -->
+
+<section class="inner-intro details-page bg bg-fixed bg-overlay-black-20 pos-r" style="background-image:url({% static 'images/bg/inner-bg-2.png' %});">
+  <div class="container">
+     <div class="row">
+           <div class="col-sm-12">
+<div class="profile-cntn text-white">
+<ul>
+  <li>{% if profile.photo %}
+    <img src="{% static profile.photo %}"  width="220">
+    {% endif %}</li>
+  <li><div class="profile-text"> <h2>{{profile.user.username}}</h2> <h5>{{ profile.age }} Years Old {{L}}
+  {% if username and not username != request.user.username %}
+            <a href="{% url "edit" %}"><img style="display:inline;margin: 0px 10px 0px 40px;border:0px; border-radius:0" height="20" width="20" src="{% static 'images/edit.png' %}"></a>
+            </div>
+    {% endif %}
+  </h5>
+  </div></li>
+</ul>
+
+</div>
+        </div>
+           </div>
+
+     </div>
+</section>
+
+
+<!--=================================
+ banner -->
+
+ <section class="page-section-ptb pt-100 text-left">
+<div class="container">
+{% if username and not username == request.user.username %}
+
+ <div >
+    <span class="user">
+
+      <p><a href="{% url 'messages_compose_to' username%}  "> Send Messages </a>
+      |<a href="{% url 'friendship:friendship_add_friend' username%}  ">   Add {{ username }} as Friend </a>
+      |<a href="{% url 'friendship:follower_add' username%}  ">  Follow  {{ username }}</a>
+    </p>
+      <p><a href="{% url 'friendship:friendship_view_friends' username%}  ">{{ username }}'s Friends</a>
+      |<a href="{% url 'friendship:friendship_followers' username%}  ">{{ username }}'s Followers</a>
+      |<a href="{% url 'friendship:friendship_following' username%}  ">{{ username }}'s Following</a>
+    </p>
+    </span>
+
+  </div>
+  {% endif %}
+
+  <div class="row">
+  <div class="col-sm-12 text-left">
+  <h4 class="title divider-3 mb-50">Basic Details</h4>
+  </div>
+  </div>
+          <div class="row">
+          <div class="col-sm-12">
+  <div class="table-responsive">
+<table class="table table-bordered text-center">
+  <tbody>
+    <tr>
+      <td><b>Gender</b></td>
+      <td>{{ G}}</td>
+      <td><b>Education</b></td>
+      <td>{{ EDU}}</td>
+    </tr>
+    <tr class="tr-bg">
+      <td><b>Age</b></td>
+      <td>{{profile.age}} Years old</td>
+      <td><b>Location</b></td>
+      <td>{{ L }}</td>
+    </tr>
+    <tr>
+      <td><b>First Name</b></td>
+      <td>{{profile.user.first_name}}</td>
+      <td><b>Last Name</b></td>
+      <td>{{profile.user.last_name}}</td>
+    </tr>
+    <tr class="tr-bg">
+      <td><b>Nickname</b></td>
+      <td>{{ profile.nickname }}</td>
+      <td><b>Is Only Child</b></td>
+      <td>{{ onlychild }} </td>
+    </tr>
+    <tr>
+      <td><b>Height</b></td>
+      <td>{{ profile.height}}</td>
+      <td><b>Weight</b></td>
+      <td>{{ profile.weight}}</td>
+    </tr>
+    <tr class="tr-bg">
+      <td><b>Looking For a </b></td>
+      <td>{{ l4 }}</td>
+      <td><b>Marital Status</b></td>
+      <td>Single</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </div>
+
+<div class="row mt-50">
+<div class="col-sm-12 text-left">
+<h4 class="title divider-3 mb-50">About Me</h4>
+<p> {{ intro }}
+</p>
+</div>
+</div>
+
+<div class="row mt-50">
+  <div class="col-sm-12 text-left">
+  <h4 class="title divider-3 mb-50">When Talking About Music</h4>
+  <p>Degree of loving movie: &nbsp  <b> {{ufeature.enjoymusic}}</b> in 5 </p>
+  <br>
+  <h5>I like...</h5>
+    <ul>
+        {% for u in lmusic %}
+        <li style="display:inline;background-color:   #FFDEAD ; margin: 0px 20px 10px 0px;border-radius:25px; padding: 5px 0px 5px 0px;  ">  &nbsp {{ u.genre }} &nbsp </li>
+        {% empty %}
+        <p> No music </p>
+        {% endfor %}
+    </ul>
+    <br>
+  <h5>But I don't like...</h5>
+    <ul>
+        {% for u in hmusic %}
+        <li style="display:inline;background-color:   #FFDEAD ; margin: 0px 20px 10px 0px;border-radius:25px; padding: 5px 0px 5px 0px;  ">  &nbsp {{ u.genre }} &nbsp </li>
+        {% empty %}
+        <p> No music </p>
+        {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<div class="row mt-50">
+  <div class="col-sm-12 text-left">
+  <h4 class="title divider-3 mb-50">When Talking About Movie</h4>
+  <p>Degree of loving movie: &nbsp  <b> {{ufeature.enjoymovie}}</b> in 5 </p>
+  <br>
+  <h5>I like...</h5>
+    <ul>
+        {% for u in lmovie %}
+        <li style="display:inline;background-color:   #FFDEAD ; margin: 0px 20px 10px 0px;border-radius:25px; padding: 5px 0px 5px 0px;  ">  &nbsp {{ u.genre }} &nbsp </li>
+        {% empty %}
+        <p> No movie </p>
+        {% endfor %}
+    </ul>
+    <br>
+  <h5>But I don't like...</h5>
+    <ul>
+        {% for u in hmovie %}
+        <li style="display:inline;background-color:   #FFDEAD ; margin: 0px 20px 10px 0px;border-radius:25px; padding: 5px 0px 5px 0px;  ">  &nbsp {{ u.genre }} &nbsp </li>
+        {% empty %}
+        <p> No movie </p>
+        {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<div class="row mt-50">
+  <div class="col-sm-12 text-left">
+  <h4 class="title divider-3 mb-50">When Talking About Hobbies</h4>
+    <ul>
+        {% for u in hobbies %}
+        <li style="display:inline;background-color:   #FFDEAD ; margin: 0px 20px 10px 0px;border-radius:25px; padding: 5px 0px 5px 0px;  ">  &nbsp {{ u.hobby_name }} &nbsp </li>
+        {% empty %}
+        <p> No movie </p>
+        {% endfor %}
+    </ul>
+    <br>
+  </div>
+</div>
+
+</div>
+
+
+</section>
+
+
+{% endblock %}

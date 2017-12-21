@@ -1,0 +1,16 @@
+<ul>
+    {% for sent_request in sent_requests %}
+        <li>
+          You sent a request to
+          <a href = "http://www.rightone.com:8080/account/profile/{{ sent_request.to_user}}">{{ sent_request.to_user}}.
+          </a>
+        </li>
+
+    {% empty %}
+</ul>
+       <div>No  sent request.</div>
+       {% endfor %}
+
+  </ul>
+
+</ul>

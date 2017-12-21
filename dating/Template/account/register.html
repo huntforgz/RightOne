@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}Log-in{% endblock %}
+
+{% block content %}
+
+{% load staticfiles %}
+<!--=================================
+ inner-intro-->
+
+<section class="inner-intro bg bg-fixed bg-overlay-black-60" style="background-image:url({% static 'images/pattern/01.png' %});">
+  <div class="container">
+     <div class="row intro-title text-center">
+           <div class="col-sm-12">
+        <div class="section-title"><h1 class="pos-r divider">register<span class="sub-title">register</span></h1></div>
+        </div>
+
+           </div>
+
+     </div>
+</section>
+
+<!--=================================
+ inner-intro-->
+
+
+<!--=================================
+ login-->
+
+<section class="login-form register-img dark-bg page-section-ptb" style="background: url({% static 'images/pattern/04.png' %}) no-repeat 0 0; background-size: cover;">
+  <div class="container">
+     <div class="row">
+       <div class="col-md-6 col-md-offset-3">
+       <div class="login-1-form register-1-form clearfix text-center">
+       <h4 class="title divider-3 text-white mb-30">sign up</h4>
+            <div class="section-field mb-30">
+              <div class="field-widget">
+               <i class="glyph-icon flaticon-user"></i>
+               <form action="." method="post">
+                  <label for="id_username"></label>
+                  <input type="text" placeholder="Username" name="username" required maxlength="150" id="id_username">
+                  <br>
+                  <span style = "color:#ffffff;" >Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+                  </div>
+               </div>
+                <div class="section-field mb-30">
+                 <div class="field-widget">
+                  <i class="glyph-icon flaticon-user"></i>
+                  <label for="id_first_name"></label>
+                  <input type="text" placeholder="First name" name="first_name" maxlength="30" id="id_first_name">
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                  <i class="glyph-icon flaticon-user"></i>
+                  <label for="id_last_name"></label>
+                  <input type="text" placeholder="Last name" name="last_name" maxlength="30" id="id_last_name">
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                  <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                  <label for="id_email"></label>
+                  <input name="email" maxlength="254" id="id_email" class="email" type="email" placeholder="Email" >
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                  <i class="glyph-icon flaticon-padlock"></i>
+                  <label for="id_password"></label>
+                  <input name="password" required id="id_password" class="Password" type="password" placeholder="Password" >
+                  </div>
+                </div>
+                <div class="section-field mb-30">
+                  <div class="field-widget">
+                  <i class="glyph-icon flaticon-padlock"></i>
+                  <label for="id_password2"></label>
+                  <input name="password2" required id="id_password2" id="ConfirmPassword" class="Password" type="password" placeholder="Confirm Password">
+                  </div>
+                </div>
+                {% csrf_token %}
+
+
+
+            <div class="clearfix"></div>
+            <div class="section-field text-uppercase text-center mt-20">
+            <a class="button  btn-lg btn-theme full-rounded animated right-icn"><span><input style=   "background-color:   transparent;border:   0px; color:#ffffff " type="submit" value="Create my account"><i class="glyph-icon flaticon-hearts" aria-hidden="true"></i></span></a>
+            </div>
+          </form>
+            <div class="clearfix"></div>
+            <div class="section-field mt-20 text-center text-white">
+            <p class="lead mb-0">Have an account? <a class="text-white" href="{% url "login" %}"><u>Sign In!</u> </a></p>
+            </div>
+
+</div>
+       </div>
+          </div>
+        </div>
+
+</section>
+
+<!--=================================
+ login-->
+
+{% endblock %}

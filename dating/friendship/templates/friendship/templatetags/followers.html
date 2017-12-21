@@ -1,0 +1,16 @@
+
+
+<div class="container">
+    {% for f in followers %}
+
+    <li>{{ f.username }}
+      | <a href="{% url 'friendship_add_friend' f.username %}">Add as friend</a>
+     |<a href="{% url 'follower_add' f.username %}">Follow user</a>
+   </li>
+
+  {% empty %}
+     </ul>
+     <p>No  followers.</p>
+
+{% endfor %}
+</div>

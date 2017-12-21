@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Edit your account{% endblock %}
+{% block content %}
+{% load staticfiles %}
+<!--=================================
+ banner -->
+<section class="inner-intro bg bg-fixed bg-overlay-black-60" style="background-image:url({% static 'images/pattern/01.png' %});">
+  <div class="container">
+     <div class="row intro-title text-center">
+           <div class="col-sm-12">
+        <div class="section-title"><h1 class="pos-r divider">Search <span class="sub-title">Search</span></h1></div>
+        </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!--=================================
+ banner -->
+
+<section class="page-section-ptb pt-30 profile-slider">
+<div class="container">
+<div class="row mb-50 xs-mb-30">
+<div class="col-sm-12 text-center">
+<h2 class="title divider">Result</h2>
+</div>
+</div>
+
+<div class="masonary">
+	{% for u in profile_list %}
+     <div class="col-sm-3 xs-mb-30">
+     <a href="{% url 'view_profile_with_name' u.user.username %}" class="profile-item">
+            <div class="profile-image clearfix"><img class="img-responsive" src="{% static u.photo %}"  alt="" >
+            </div>
+            <div class="profile-details profile-text">
+              <h5 class="title">{{u.user.username}}</h5>
+              <span class="text-black">{{u.age}} Years Old</span>
+          </div>
+          </a>
+          <br>
+      </div>
+{% empty %}
+<div class="row mb-50 xs-mb-30">
+	<p> Sorry, We can't find such person.
+</p>
+</div>
+{% endfor %}
+</div>
+
+
+
+{% endblock%}
+
